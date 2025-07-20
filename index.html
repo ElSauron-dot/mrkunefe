@@ -6,11 +6,16 @@
   <title>MrKunefe</title>
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <style>
-    body {
+    /* Sayfa yüksekliği %100, footer en altta */
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: 'Luckiest Guy', cursive;
       background-color: #fff;
       color: #222;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
@@ -21,6 +26,7 @@
       color: white;
       padding: 10px 40px;
       font-size: 1.2em;
+      flex-shrink: 0;
     }
 
     .nav-left a,
@@ -38,13 +44,14 @@
     }
 
     main {
+      flex-grow: 1; /* Ana içerik yüksekliği kalan alanı kaplasın */
       max-width: 900px;
       margin: 40px auto;
       padding: 0 40px;
       display: flex;
       flex-direction: column;
       gap: 20px;
-      align-items: flex-start;
+      align-items: center; /* Butonları yatayda ortala */
     }
 
     .link-button {
@@ -66,7 +73,6 @@
       background-color: #e69500;
     }
 
-    /* MODLAR ve KANAL blokları alt alta olacak */
     .modlar-container {
       display: flex;
       flex-direction: column;
@@ -74,13 +80,13 @@
     }
 
     footer {
-      text-align: center;
-      padding: 25px;
       background-color: #333;
       color: white;
       font-size: 0.9em;
       user-select: none;
-      margin-top: 80px;
+      padding: 25px;
+      text-align: center;
+      flex-shrink: 0; /* Footer küçülmesin */
     }
 
     .user-dropdown {
