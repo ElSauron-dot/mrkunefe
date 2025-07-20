@@ -6,30 +6,40 @@
   <title>Kaydol - MrKunefe</title>
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
       font-family: 'Luckiest Guy', cursive;
       background: linear-gradient(to bottom right, #ffcc00, #ff6600);
       color: white;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
     }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+    }
+
     h1 {
       margin-bottom: 20px;
       text-shadow: 2px 2px #000;
     }
+
     form {
       background: rgba(0, 0, 0, 0.4);
       padding: 30px;
       border-radius: 15px;
       display: flex;
       flex-direction: column;
-      width: 300px;
+      width: 320px;
     }
+
     input[type="text"], input[type="password"] {
       margin-bottom: 15px;
       padding: 10px;
@@ -37,11 +47,14 @@
       border: none;
       border-radius: 10px;
     }
+
     label {
       font-size: 0.9em;
       margin-bottom: 15px;
       text-align: left;
+      color: white;
     }
+
     button {
       padding: 12px;
       font-size: 1em;
@@ -49,42 +62,96 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      user-select: none;
     }
+
     button:hover {
       background: #ff8000;
     }
+
     a {
       margin-top: 10px;
       color: white;
       font-size: 0.9em;
       text-decoration: underline;
       text-align: center;
+      display: block;
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.9em;
+      user-select: none;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      font-size: 0.9em;
+      user-select: none;
+      padding: 15px;
+      text-align: center;
+      flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <h1>Kaydol</h1>
-  <form onsubmit="kaydol(); return false;">
-    <input type="text" id="nickname" placeholder="Yeni kullanıcı adın" required />
-    <input type="password" id="password" placeholder="Şifre" required />
-    <label><input type="checkbox" id="hatirla" /> Beni Hatırla</label>
-    <button type="submit">Kaydol</button>
-    <a href="/giris.html">Zaten hesabım var</a>
-  </form>
+
+  <main>
+    <h1>Kaydol</h1>
+    <form onsubmit="kaydol(); return false;">
+      <input type="text" id="nickname" placeholder="Yeni kullanıcı adın" required />
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="Şifre (min 8 karakter)" required />
+        <button type="button" class="toggle-password" onclick="togglePassword('password', this)">Göster</button>
+      </div>
+      <label><input type="checkbox" id="hatirla" /> Beni Hatırla</label>
+      <button type="submit">Kaydol</button>
+      <a href="/giris.html">Zaten hesabım var</a>
+    </form>
+  </main>
+
+  <footer>
+    © 2025 MrKunefe. Tüm hakları saklıdır.
+  </footer>
 
   <script>
+    function togglePassword(id, btn) {
+      const input = document.getElementById(id);
+      if (input.type === "password") {
+        input.type = "text";
+        btn.textContent = "Gizle";
+      } else {
+        input.type = "password";
+        btn.textContent = "Göster";
+      }
+    }
+
     function kaydol() {
       const nick = document.getElementById("nickname").value.trim();
-      const pass = document.getElementById("password").value.trim();
+      const pass = document.getElementById("password").value;
       const hatirla = document.getElementById("hatirla").checked;
 
       if (!nick || !pass) {
         alert("Lütfen kullanıcı adı ve şifre giriniz.");
         return;
       }
-
-      // Şifre ve kullanıcı adı localStorage/sessionStorage'da saklanmaz (güvenlik sebebiyle)
-      // Sadece nickname kaydediliyor, backend olmadan gerçek doğrulama mümkün değil.
+      if (pass.length < 8) {
+        alert("Şifre en az 8 karakter olmalıdır.");
+        return;
+      }
 
       if (hatirla) {
         localStorage.setItem("nickname", nick);
@@ -95,5 +162,6 @@
       window.location.href = "/";
     }
   </script>
+
 </body>
 </html>
