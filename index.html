@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MrKunefe</title>
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -19,7 +19,8 @@
       align-items: center;
       background-color: #ffa500;
       color: white;
-      padding: 10px 20px;
+      padding: 10px 40px;
+      font-size: 1.2em;
     }
 
     .nav-left a,
@@ -31,41 +32,55 @@
     }
 
     .nav-center {
-      font-size: 1.8em;
+      font-size: 2em;
+      font-weight: bold;
+      user-select: none;
     }
 
     main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 40px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
+      gap: 20px;
+      align-items: flex-start;
     }
 
     .link-button {
-      display: block;
-      text-align: center;
-      margin: 10px 0;
-      padding: 15px 25px;
+      display: inline-block;
+      padding: 20px 30px;
       background-color: #ffa500;
       color: white;
       text-decoration: none;
-      font-size: 1.5em;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
-      transition: 0.3s;
+      font-size: 1.6em;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      user-select: none;
+      transition: background-color 0.3s ease;
+      width: 320px;
+      text-align: center;
     }
 
     .link-button:hover {
       background-color: #e69500;
     }
 
+    /* MODLAR ve KANAL blokları alt alta olacak */
+    .modlar-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 25px;
       background-color: #333;
       color: white;
       font-size: 0.9em;
+      user-select: none;
+      margin-top: 80px;
     }
 
     .user-dropdown {
@@ -108,15 +123,6 @@
     .dropdown-menu.show {
       display: block;
     }
-
-    @media screen and (max-width: 600px) {
-      .nav-left, .nav-right {
-        font-size: 0.9em;
-      }
-      .nav-center {
-        font-size: 1.4em;
-      }
-    }
   </style>
 </head>
 <body>
@@ -134,9 +140,13 @@
   </header>
 
   <main>
-    <a class="link-button" href="https://kunefecraft.pages.dev" target="_blank">KUNEFECRAFT</a>
-    <a class="link-button" href="https://worldofdoners.pages.dev" target="_blank">WORLD OF DONERS</a>
-    <a class="link-button" href="/mods" target="_blank">MODLAR</a>
+    <a class="link-button" href="https://kunefecraft.pages.dev" target="_blank" rel="noopener">KUNEFECRAFT</a>
+    <a class="link-button" href="https://worldofdoners.pages.dev" target="_blank" rel="noopener">WORLD OF DONERS</a>
+
+    <div class="modlar-container">
+      <a class="link-button" href="/mods" target="_blank" rel="noopener">MODLAR</a>
+      <a class="link-button" href="https://youtube.com/@MrKunefe" target="_blank" rel="noopener">KANAL</a>
+    </div>
   </main>
 
   <footer>
