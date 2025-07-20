@@ -7,16 +7,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+      margin: 0; padding: 0; height: 100%;
       font-family: 'Luckiest Guy', cursive;
       background: linear-gradient(to bottom right, #ffcc00, #ff6600);
       color: white;
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
     }
-
+    header {
+      background-color: #ffa500;
+      padding: 10px 40px;
+      flex-shrink: 0;
+      font-size: 1.2em;
+    }
+    header a {
+      color: white; text-decoration: none; font-weight: bold;
+      user-select: none;
+    }
     main {
       flex-grow: 1;
       display: flex;
@@ -25,12 +31,10 @@
       align-items: center;
       padding: 0 20px;
     }
-
     h1 {
       margin-bottom: 20px;
       text-shadow: 2px 2px #000;
     }
-
     form {
       background: rgba(0, 0, 0, 0.4);
       padding: 30px;
@@ -39,7 +43,6 @@
       flex-direction: column;
       width: 320px;
     }
-
     input[type="text"], input[type="password"] {
       margin-bottom: 15px;
       padding: 10px;
@@ -47,14 +50,12 @@
       border: none;
       border-radius: 10px;
     }
-
     label {
       font-size: 0.9em;
       margin-bottom: 15px;
       text-align: left;
       color: white;
     }
-
     button {
       padding: 12px;
       font-size: 1em;
@@ -64,24 +65,21 @@
       cursor: pointer;
       user-select: none;
     }
-
     button:hover {
       background: #ff8000;
     }
-
-    a {
+    a.form-link {
       margin-top: 10px;
       color: white;
       font-size: 0.9em;
       text-decoration: underline;
       text-align: center;
       display: block;
+      user-select: none;
     }
-
     .password-wrapper {
       position: relative;
     }
-
     .toggle-password {
       position: absolute;
       right: 12px;
@@ -95,7 +93,6 @@
       font-size: 0.9em;
       user-select: none;
     }
-
     footer {
       background-color: #333;
       color: white;
@@ -109,59 +106,61 @@
 </head>
 <body>
 
-  <main>
-    <h1>Giriş Yap</h1>
-    <form onsubmit="girisYap(); return false;">
-      <input type="text" id="nickname" placeholder="Kullanıcı adın" required />
-      <div class="password-wrapper">
-        <input type="password" id="password" placeholder="Şifre (min 8 karakter)" required />
-        <button type="button" class="toggle-password" onclick="togglePassword('password', this)">Göster</button>
-      </div>
-      <label><input type="checkbox" id="hatirla" /> Beni Hatırla</label>
-      <button type="submit">Giriş Yap</button>
-      <a href="/kaydol.html">Kaydolmak istiyorum</a>
-    </form>
-  </main>
+<header>
+  <a href="/">Ana Sayfa</a>
+</header>
 
-  <footer>
-    © 2025 MrKunefe. Tüm hakları saklıdır.
-  </footer>
+<main>
+  <h1>Giriş Yap</h1>
+  <form onsubmit="girisYap(); return false;">
+    <input type="text" id="nickname" placeholder="Kullanıcı adın" required />
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Şifre (min 8 karakter)" required />
+      <button type="button" class="toggle-password" onclick="togglePassword('password', this)">Göster</button>
+    </div>
+    <label><input type="checkbox" id="hatirla" /> Beni Hatırla</label>
+    <button type="submit">Giriş Yap</button>
+    <a class="form-link" href="/kaydol.html">Kaydolmak istiyorum</a>
+  </form>
+</main>
 
-  <script>
-    function togglePassword(id, btn) {
-      const input = document.getElementById(id);
-      if (input.type === "password") {
-        input.type = "text";
-        btn.textContent = "Gizle";
-      } else {
-        input.type = "password";
-        btn.textContent = "Göster";
-      }
+<footer>© 2025 MrKunefe. Tüm hakları saklıdır.</footer>
+
+<script>
+  function togglePassword(id, btn) {
+    const input = document.getElementById(id);
+    if (input.type === "password") {
+      input.type = "text";
+      btn.textContent = "Gizle";
+    } else {
+      input.type = "password";
+      btn.textContent = "Göster";
+    }
+  }
+
+  function girisYap() {
+    const nick = document.getElementById("nickname").value.trim();
+    const pass = document.getElementById("password").value;
+    const hatirla = document.getElementById("hatirla").checked;
+
+    if (!nick || !pass) {
+      alert("Lütfen kullanıcı adı ve şifre giriniz.");
+      return;
+    }
+    if (pass.length < 8) {
+      alert("Şifre en az 8 karakter olmalıdır.");
+      return;
     }
 
-    function girisYap() {
-      const nick = document.getElementById("nickname").value.trim();
-      const pass = document.getElementById("password").value;
-      const hatirla = document.getElementById("hatirla").checked;
-
-      if (!nick || !pass) {
-        alert("Lütfen kullanıcı adı ve şifre giriniz.");
-        return;
-      }
-      if (pass.length < 8) {
-        alert("Şifre en az 8 karakter olmalıdır.");
-        return;
-      }
-
-      if (hatirla) {
-        localStorage.setItem("nickname", nick);
-      } else {
-        sessionStorage.setItem("nickname", nick);
-      }
-
-      window.location.href = "/";
+    if (hatirla) {
+      localStorage.setItem("nickname", nick);
+    } else {
+      sessionStorage.setItem("nickname", nick);
     }
-  </script>
+
+    window.location.href = "/";
+  }
+</script>
 
 </body>
 </html>
