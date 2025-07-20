@@ -6,54 +6,34 @@
   <title>MrKunefe</title>
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <style>
-    /* Sayfa yüksekliği %100, footer en altta */
     html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
+      margin: 0; padding: 0; height: 100%;
       font-family: 'Luckiest Guy', cursive;
       background-color: #fff;
       color: #222;
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
     }
-
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #ffa500;
-      color: white;
-      padding: 10px 40px;
-      font-size: 1.2em;
-      flex-shrink: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      background-color: #ffa500; color: white;
+      padding: 10px 40px; font-size: 1.2em; flex-shrink: 0;
     }
-
-    .nav-left a,
-    .nav-right a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      font-size: 1em;
+    .nav-left a, .nav-right a {
+      color: white; text-decoration: none; margin: 0 10px; font-size: 1em;
     }
-
     .nav-center {
-      font-size: 2em;
-      font-weight: bold;
-      user-select: none;
+      font-size: 2em; font-weight: bold; user-select: none;
     }
-
     main {
-      flex-grow: 1; /* Ana içerik yüksekliği kalan alanı kaplasın */
+      flex-grow: 1;
       max-width: 900px;
       margin: 40px auto;
       padding: 0 40px;
       display: flex;
       flex-direction: column;
       gap: 20px;
-      align-items: center; /* Butonları yatayda ortala */
+      align-items: center;
     }
-
     .link-button {
       display: inline-block;
       padding: 20px 30px;
@@ -68,17 +48,14 @@
       width: 320px;
       text-align: center;
     }
-
     .link-button:hover {
       background-color: #e69500;
     }
-
     .modlar-container {
       display: flex;
       flex-direction: column;
       gap: 15px;
     }
-
     footer {
       background-color: #333;
       color: white;
@@ -86,20 +63,17 @@
       user-select: none;
       padding: 25px;
       text-align: center;
-      flex-shrink: 0; /* Footer küçülmesin */
+      flex-shrink: 0;
     }
-
     .user-dropdown {
       position: relative;
       display: inline-block;
       cursor: pointer;
     }
-
     .nickname {
       font-size: 1em;
       user-select: none;
     }
-
     .dropdown-menu {
       display: none;
       position: absolute;
@@ -112,7 +86,6 @@
       border-radius: 10px;
       overflow: hidden;
     }
-
     .dropdown-menu a {
       color: #333;
       padding: 10px 15px;
@@ -121,11 +94,9 @@
       font-family: sans-serif;
       font-weight: bold;
     }
-
     .dropdown-menu a:hover {
       background-color: #f2f2f2;
     }
-
     .dropdown-menu.show {
       display: block;
     }
@@ -133,63 +104,59 @@
 </head>
 <body>
 
-  <header>
-    <div class="nav-left">
-      <a href="/">Ana Sayfa</a>
-    </div>
-    <div class="nav-center">
-      MrKunefe
-    </div>
-    <div class="nav-right" id="user-area">
-      <a href="/giris.html">Giriş Yap</a> / <a href="/kaydol.html">Kaydol</a>
-    </div>
-  </header>
+<header>
+  <div class="nav-left">
+    <a href="/">Ana Sayfa</a>
+  </div>
+  <div class="nav-center">MrKunefe</div>
+  <div class="nav-right" id="user-area">
+    <a href="/giris.html">Giriş Yap</a> / <a href="/kaydol.html">Kaydol</a>
+  </div>
+</header>
 
-  <main>
-    <a class="link-button" href="https://kunefecraft.pages.dev" target="_blank" rel="noopener">KUNEFECRAFT</a>
-    <a class="link-button" href="https://worldofdoners.pages.dev" target="_blank" rel="noopener">WORLD OF DONERS</a>
+<main>
+  <a class="link-button" href="https://kunefecraft.pages.dev" target="_blank" rel="noopener">KUNEFECRAFT</a>
+  <a class="link-button" href="https://worldofdoners.pages.dev" target="_blank" rel="noopener">WORLD OF DONERS</a>
 
-    <div class="modlar-container">
-      <a class="link-button" href="/mods" target="_blank" rel="noopener">MODLAR</a>
-      <a class="link-button" href="https://youtube.com/@MrKunefe" target="_blank" rel="noopener">KANAL</a>
-    </div>
-  </main>
+  <div class="modlar-container">
+    <a class="link-button" href="https://drive.google.com/drive/folders/1ZkaoEKujxIcA9c7fjQU7iRT9V9lclj6F?usp=sharing" target="_blank" rel="noopener">MODLAR</a>
+    <a class="link-button" href="https://youtube.com/@MrKunefe" target="_blank" rel="noopener">KANAL</a>
+  </div>
+</main>
 
-  <footer>
-    © 2025 MrKunefe. Tüm hakları saklıdır.
-  </footer>
+<footer>© 2025 MrKunefe. Tüm hakları saklıdır.</footer>
 
-  <script>
-    const userArea = document.getElementById("user-area");
-    const nickname = localStorage.getItem("nickname") || sessionStorage.getItem("nickname");
+<script>
+  const userArea = document.getElementById("user-area");
+  const nickname = localStorage.getItem("nickname") || sessionStorage.getItem("nickname");
 
-    if (nickname) {
-      userArea.innerHTML = `
-        <div class="user-dropdown">
-          <span class="nickname">👤 ${nickname} ▼</span>
-          <div class="dropdown-menu">
-            <a href="#" id="logout-btn">Çıkış Yap</a>
-          </div>
+  if (nickname) {
+    userArea.innerHTML = `
+      <div class="user-dropdown">
+        <span class="nickname">👤 ${nickname} ▼</span>
+        <div class="dropdown-menu">
+          <a href="#" id="logout-btn">Çıkış Yap</a>
         </div>
-      `;
+      </div>
+    `;
 
-      document.querySelector(".nickname").addEventListener("click", () => {
-        document.querySelector(".dropdown-menu").classList.toggle("show");
-      });
+    document.querySelector(".nickname").addEventListener("click", () => {
+      document.querySelector(".dropdown-menu").classList.toggle("show");
+    });
 
-      document.getElementById("logout-btn").addEventListener("click", () => {
-        localStorage.removeItem("nickname");
-        sessionStorage.removeItem("nickname");
-        location.reload();
-      });
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("nickname");
+      sessionStorage.removeItem("nickname");
+      location.reload();
+    });
 
-      window.addEventListener("click", (e) => {
-        if (!e.target.closest(".user-dropdown")) {
-          document.querySelector(".dropdown-menu").classList.remove("show");
-        }
-      });
-    }
-  </script>
+    window.addEventListener("click", (e) => {
+      if (!e.target.closest(".user-dropdown")) {
+        document.querySelector(".dropdown-menu").classList.remove("show");
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
