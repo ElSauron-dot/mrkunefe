@@ -22,11 +22,11 @@
   </footer>
 
   <script>
-    // Nickname varsa giriş/kaydol yerine onu yaz
-    const userArea = document.getElementById("user-area");
-    const nickname = localStorage.getItem("nickname");
-    if (nickname) {
-      userArea.innerHTML = `<span style="font-size: 1em;">👤 ${nickname}</span>`;
-    }
+// Hem localStorage hem sessionStorage kontrol edilir
+  const userArea = document.getElementById("user-area");
+  const nickname = localStorage.getItem("nickname") || sessionStorage.getItem("nickname");
+  if (nickname) {
+    userArea.innerHTML = `<span style="font-size: 1em;">👤 ${nickname}</span>`;
+  }
   </script>
 </body>
