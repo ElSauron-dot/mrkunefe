@@ -3,162 +3,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kaydol - MrKunefe</title>
+  
+  <!-- Google Site Doğrulama -->
+  <meta name="google-site-verification" content="5erUS4gnK8jPbyyalGJYX_MhW_-3CRyS343ygihqevc" />
+  
+  <!-- Anahtar Kelimeler -->
+  <meta name="keywords" content="MrKünefe, MrKunefe, MrKunefe youtube, youtube, minecraft, minecraft modları, kunefecraft, world of doners, döner, kunefe, künefe" />
+  
+  <title>MrKunefe</title>
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" />
+  
   <style>
     html, body {
       margin: 0; padding: 0; height: 100%;
       font-family: 'Luckiest Guy', cursive;
-      background: linear-gradient(to bottom right, #ffcc00, #ff6600);
-      color: white;
+      background-color: #fff;
+      color: #222;
       display: flex; flex-direction: column;
     }
     header {
-      background-color: #ffa500;
-      padding: 10px 40px;
-      flex-shrink: 0;
-      font-size: 1.2em;
+      display: flex; justify-content: space-between; align-items: center;
+      background-color: #ffa500; color: white;
+      padding: 10px 40px; font-size: 1.2em; flex-shrink: 0;
     }
-    header a {
-      color: white; text-decoration: none; font-weight: bold;
-      user-select: none;
+    .nav-left a, .nav-right a {
+      color: white; text-decoration: none; margin: 0 10px; font-size: 1em;
+    }
+    .nav-center {
+      font-size: 2em; font-weight: bold; user-select: none;
     }
     main {
       flex-grow: 1;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 40px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      gap: 20px;
       align-items: center;
-      padding: 0 20px;
     }
-    h1 {
-      margin-bottom: 20px;
-      text-shadow: 2px 2px #000;
-    }
-    form {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 30px;
+    .link-button {
+      display: inline-block;
+      padding: 20px 30px;
+      background-color: #ffa500;
+      color: white;
+      text-decoration: none;
+      font-size: 1.6em;
       border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      user-select: none;
+      transition: background-color 0.3s ease;
+      width: 320px;
+      text-align: center;
+    }
+    .link-button:hover {
+      background-color: #e69500;
+    }
+    .modlar-container {
       display: flex;
       flex-direction: column;
-      width: 320px;
-    }
-    input[type="text"], input[type="password"] {
-      margin-bottom: 15px;
-      padding: 10px;
-      font-size: 1em;
-      border: none;
-      border-radius: 10px;
-    }
-    label {
-      font-size: 0.9em;
-      margin-bottom: 15px;
-      text-align: left;
-      color: white;
-    }
-    button {
-      padding: 12px;
-      font-size: 1em;
-      background: #ff9900;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      user-select: none;
-    }
-    button:hover {
-      background: #ff8000;
-    }
-    a.form-link {
-      margin-top: 10px;
-      color: white;
-      font-size: 0.9em;
-      text-decoration: underline;
-      text-align: center;
-      display: block;
-      user-select: none;
-    }
-    .password-wrapper {
-      position: relative;
-    }
-    .toggle-password {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 0.9em;
-      user-select: none;
+      gap: 15px;
     }
     footer {
       background-color: #333;
       color: white;
       font-size: 0.9em;
       user-select: none;
-      padding: 15px;
+      padding: 25px;
       text-align: center;
       flex-shrink: 0;
+    }
+    .user-dropdown {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .nickname {
+      font-size: 1em;
+      user-select: none;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #fff;
+      color: #333;
+      min-width: 120px;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .dropdown-menu a {
+      color: #333;
+      padding: 10px 15px;
+      display: block;
+      text-decoration: none;
+      font-family: sans-serif;
+      font-weight: bold;
+    }
+    .dropdown-menu a:hover {
+      background-color: #f2f2f2;
+    }
+    .dropdown-menu.show {
+      display: block;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <a href="/">Ana Sayfa</a>
+  <div class="nav-left">
+    <a href="/">Ana Sayfa</a>
+  </div>
+  <div class="nav-center">MrKunefe</div>
+  <div class="nav-right" id="user-area">
+    <a href="/giris.html">Giriş Yap</a> / <a href="/kaydol.html">Kaydol</a>
+  </div>
 </header>
 
 <main>
-  <h1>Kaydol</h1>
-  <form onsubmit="kaydol(); return false;">
-    <input type="text" id="nickname" placeholder="Yeni kullanıcı adın" required />
-    <div class="password-wrapper">
-      <input type="password" id="password" placeholder="Şifre (min 8 karakter)" required />
-      <button type="button" class="toggle-password" onclick="togglePassword('password', this)">Göster</button>
-    </div>
-    <label><input type="checkbox" id="hatirla" /> Beni Hatırla</label>
-    <button type="submit">Kaydol</button>
-    <a class="form-link" href="/giris.html">Zaten hesabım var</a>
-  </form>
+  <a class="link-button" href="https://kunefecraft.pages.dev" target="_blank" rel="noopener">KUNEFECRAFT</a>
+  <a class="link-button" href="https://worldofdoners.pages.dev" target="_blank" rel="noopener">WORLD OF DONERS</a>
+
+  <div class="modlar-container">
+    <a class="link-button" href="https://drive.google.com/drive/folders/1ZkaoEKujxIcA9c7fjQU7iRT9V9lclj6F?usp=sharing" target="_blank" rel="noopener">MODLAR</a>
+    <a class="link-button" href="https://youtube.com/@MrKunefe" target="_blank" rel="noopener">KANAL</a>
+    
+    <!-- Yeni eklenen butonlar -->
+    <a class="link-button" href="https://smartyint.pages.dev/" target="_blank" rel="noopener">SMARTYINT</a>
+    <a class="link-button" href="https://chatzeki.pages.dev/" target="_blank" rel="noopener">CHAT ZEK-I</a>
+    <a class="link-button" href="https://neochat.pages.dev/" target="_blank" rel="noopener">NEOCHAT</a>
+  </div>
 </main>
 
 <footer>© 2025 MrKunefe. Tüm hakları saklıdır.</footer>
 
 <script>
-  function togglePassword(id, btn) {
-    const input = document.getElementById(id);
-    if (input.type === "password") {
-      input.type = "text";
-      btn.textContent = "Gizle";
-    } else {
-      input.type = "password";
-      btn.textContent = "Göster";
-    }
-  }
+  const userArea = document.getElementById("user-area");
+  const nickname = localStorage.getItem("nickname") || sessionStorage.getItem("nickname");
 
-  function kaydol() {
-    const nick = document.getElementById("nickname").value.trim();
-    const pass = document.getElementById("password").value;
-    const hatirla = document.getElementById("hatirla").checked;
+  if (nickname) {
+    userArea.innerHTML = `
+      <div class="user-dropdown">
+        <span class="nickname">👤 ${nickname} ▼</span>
+        <div class="dropdown-menu">
+          <a href="#" id="logout-btn">Çıkış Yap</a>
+        </div>
+      </div>
+    `;
 
-    if (!nick || !pass) {
-      alert("Lütfen kullanıcı adı ve şifre giriniz.");
-      return;
-    }
-    if (pass.length < 8) {
-      alert("Şifre en az 8 karakter olmalıdır.");
-      return;
-    }
+    document.querySelector(".nickname").addEventListener("click", () => {
+      document.querySelector(".dropdown-menu").classList.toggle("show");
+    });
 
-    if (hatirla) {
-      localStorage.setItem("nickname", nick);
-    } else {
-      sessionStorage.setItem("nickname", nick);
-    }
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("nickname");
+      sessionStorage.removeItem("nickname");
+      location.reload();
+    });
 
-    window.location.href = "/";
+    window.addEventListener("click", (e) => {
+      if (!e.target.closest(".user-dropdown")) {
+        document.querySelector(".dropdown-menu").classList.remove("show");
+      }
+    });
   }
 </script>
 
