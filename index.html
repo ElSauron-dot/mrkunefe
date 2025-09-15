@@ -147,6 +147,57 @@
   if (nickname) {
     userArea.innerHTML = `
       <div class="user-dropdown">
+        <span class="nickname">👤 ${nickname} <body>
+
+<header>
+  <div class="nav-left">
+    <a href="/">Ana Sayfa</a>
+  </div>
+  <div class="nav-center">MrKunefe</div>
+  <div class="nav-right" id="user-area">
+    <a href="/giris.html">Giriş Yap</a> / <a href="/kaydol.html">Kaydol</a>
+  </div>
+</header>
+
+<main>
+  <!-- Reklam Başlangıç -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9084380358163608"
+      crossorigin="anonymous"></script>
+  <!-- KünefeReklam TİPİ 1 -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-9084380358163608"
+       data-ad-slot="6019692718"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  <!-- Reklam Bitiş -->
+
+  <a class="link-button" href="https://kunefecraft.pages.dev" target="_blank" rel="noopener">KUNEFECRAFT</a>
+  <a class="link-button" href="https://worldofdoners.pages.dev" target="_blank" rel="noopener">WORLD OF DONERS</a>
+
+  <div class="modlar-container">
+    <a class="link-button" href="https://drive.google.com/drive/folders/1ZkaoEKujxIcA9c7fjQU7iRT9V9lclj6F?usp=sharing" target="_blank" rel="noopener">MODLAR</a>
+    <a class="link-button" href="https://youtube.com/@MrKunefe" target="_blank" rel="noopener">KANAL</a>
+    
+    <!-- Yeni eklenen butonlar -->
+    <a class="link-button" href="https://smartyint.pages.dev/" target="_blank" rel="noopener">SMARTYINT</a>
+    <a class="link-button" href="https://chatzeki.pages.dev/" target="_blank" rel="noopener">CHAT ZEK-I</a>
+    <a class="link-button" href="https://neochat.pages.dev/" target="_blank" rel="noopener">NEOCHAT</a>
+  </div>
+</main>
+
+<footer>© 2025 MrKunefe. Tüm hakları saklıdır.</footer>
+
+<script>
+  const userArea = document.getElementById("user-area");
+  const nickname = localStorage.getItem("nickname") || sessionStorage.getItem("nickname");
+
+  if (nickname) {
+    userArea.innerHTML = `
+      <div class="user-dropdown">
         <span class="nickname">👤 ${nickname} ▼</span>
         <div class="dropdown-menu">
           <a href="#" id="logout-btn">Çıkış Yap</a>
@@ -173,5 +224,32 @@
 </script>
 
 </body>
+▼</span>
+        <div class="dropdown-menu">
+          <a href="#" id="logout-btn">Çıkış Yap</a>
+        </div>
+      </div>
+    `;
+
+    document.querySelector(".nickname").addEventListener("click", () => {
+      document.querySelector(".dropdown-menu").classList.toggle("show");
+    });
+
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("nickname");
+      sessionStorage.removeItem("nickname");
+      location.reload();
+    });
+
+    window.addEventListener("click", (e) => {
+      if (!e.target.closest(".user-dropdown")) {
+        document.querySelector(".dropdown-menu").classList.remove("show");
+      }
+    });
+  }
+</script>
+
+</body>
 </html>
+
 
