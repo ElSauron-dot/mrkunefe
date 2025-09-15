@@ -16,25 +16,38 @@
   
   <style>
     html, body {
-      margin: 0; padding: 0; height: 100%;
+      margin: 0; 
+      padding: 0; 
+      min-height: 100%; 
       font-family: 'Luckiest Guy', cursive;
+      display: flex; 
+      flex-direction: column;
       background-color: #fff;
       color: #222;
-      display: flex; flex-direction: column;
     }
     header {
-      display: flex; justify-content: space-between; align-items: center;
-      background-color: #ffa500; color: white;
-      padding: 10px 40px; font-size: 1.2em; flex-shrink: 0;
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      background-color: #ffa500; 
+      color: white;
+      padding: 10px 40px; 
+      font-size: 1.2em; 
+      flex-shrink: 0;
     }
     .nav-left a, .nav-right a {
-      color: white; text-decoration: none; margin: 0 10px; font-size: 1em;
+      color: white; 
+      text-decoration: none; 
+      margin: 0 10px; 
+      font-size: 1em;
     }
     .nav-center {
-      font-size: 2em; font-weight: bold; user-select: none;
+      font-size: 2em; 
+      font-weight: bold; 
+      user-select: none;
     }
     main {
-      flex-grow: 1;
+      flex: 1; /* Footer hep aşağıda kalsın */
       max-width: 900px;
       margin: 40px auto;
       padding: 0 40px;
@@ -64,6 +77,12 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+    }
+    .ad-container {
+      width: 100%; 
+      margin: 20px 0; 
+      display: flex; 
+      justify-content: center;
     }
     footer {
       background-color: #333;
@@ -131,36 +150,14 @@
     <a class="link-button" href="https://drive.google.com/drive/folders/1ZkaoEKujxIcA9c7fjQU7iRT9V9lclj6F?usp=sharing" target="_blank" rel="noopener">MODLAR</a>
     <a class="link-button" href="https://youtube.com/@MrKunefe" target="_blank" rel="noopener">KANAL</a>
     
-    <!-- Yeni eklenen butonlar -->
     <a class="link-button" href="https://smartyint.pages.dev/" target="_blank" rel="noopener">SMARTYINT</a>
     <a class="link-button" href="https://chatzeki.pages.dev/" target="_blank" rel="noopener">CHAT ZEK-I</a>
     <a class="link-button" href="https://neochat.pages.dev/" target="_blank" rel="noopener">NEOCHAT</a>
   </div>
 </main>
 
-<footer>© 2025 MrKunefe. Tüm hakları saklıdır.</footer>
-
-<script>
-  const userArea = document.getElementById("user-area");
-  const nickname = localStorage.getItem("nickname") || sessionStorage.getItem("nickname");
-
-  if (nickname) {
-    userArea.innerHTML = `
-      <div class="user-dropdown">
-        <span class="nickname">👤 ${nickname} <body>
-
-<header>
-  <div class="nav-left">
-    <a href="/">Ana Sayfa</a>
-  </div>
-  <div class="nav-center">MrKunefe</div>
-  <div class="nav-right" id="user-area">
-    <a href="/giris.html">Giriş Yap</a> / <a href="/kaydol.html">Kaydol</a>
-  </div>
-</header>
-
-<main>
-  <!-- Reklam Başlangıç -->
+<!-- Google AdSense Reklam Alanı -->
+<div class="ad-container">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9084380358163608"
       crossorigin="anonymous"></script>
   <!-- KünefeReklam TİPİ 1 -->
@@ -173,21 +170,7 @@
   <script>
        (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
-  <!-- Reklam Bitiş -->
-
-  <a class="link-button" href="https://kunefecraft.pages.dev" target="_blank" rel="noopener">KUNEFECRAFT</a>
-  <a class="link-button" href="https://worldofdoners.pages.dev" target="_blank" rel="noopener">WORLD OF DONERS</a>
-
-  <div class="modlar-container">
-    <a class="link-button" href="https://drive.google.com/drive/folders/1ZkaoEKujxIcA9c7fjQU7iRT9V9lclj6F?usp=sharing" target="_blank" rel="noopener">MODLAR</a>
-    <a class="link-button" href="https://youtube.com/@MrKunefe" target="_blank" rel="noopener">KANAL</a>
-    
-    <!-- Yeni eklenen butonlar -->
-    <a class="link-button" href="https://smartyint.pages.dev/" target="_blank" rel="noopener">SMARTYINT</a>
-    <a class="link-button" href="https://chatzeki.pages.dev/" target="_blank" rel="noopener">CHAT ZEK-I</a>
-    <a class="link-button" href="https://neochat.pages.dev/" target="_blank" rel="noopener">NEOCHAT</a>
-  </div>
-</main>
+</div>
 
 <footer>© 2025 MrKunefe. Tüm hakları saklıdır.</footer>
 
@@ -224,32 +207,4 @@
 </script>
 
 </body>
-▼</span>
-        <div class="dropdown-menu">
-          <a href="#" id="logout-btn">Çıkış Yap</a>
-        </div>
-      </div>
-    `;
-
-    document.querySelector(".nickname").addEventListener("click", () => {
-      document.querySelector(".dropdown-menu").classList.toggle("show");
-    });
-
-    document.getElementById("logout-btn").addEventListener("click", () => {
-      localStorage.removeItem("nickname");
-      sessionStorage.removeItem("nickname");
-      location.reload();
-    });
-
-    window.addEventListener("click", (e) => {
-      if (!e.target.closest(".user-dropdown")) {
-        document.querySelector(".dropdown-menu").classList.remove("show");
-      }
-    });
-  }
-</script>
-
-</body>
 </html>
-
-
